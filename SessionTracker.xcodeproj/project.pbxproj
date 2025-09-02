@@ -33,6 +33,8 @@
 		18D775C722AD944400AE281E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C622AD944400AE281E /* Assets.xcassets */; };
 		18D775CA22AD944400AE281E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C922AD944400AE281E /* Preview Assets.xcassets */; };
 		18D775D822AD963800AE281E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D775DA22AD963800AE281E /* LaunchScreen.storyboard */; };
+		49039CD82E65B100005E4A23 /* OpenRandomSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49039CD72E65B100005E4A23 /* OpenRandomSession.swift */; };
+		49039CDA2E66FD57005E4A23 /* CreateCollectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49039CD92E66FD57005E4A23 /* CreateCollectionIntent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		18D775C622AD944400AE281E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D775C922AD944400AE281E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D775CE22AD944400AE281E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49039CD72E65B100005E4A23 /* OpenRandomSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenRandomSession.swift; sourceTree = "<group>"; };
+		49039CD92E66FD57005E4A23 /* CreateCollectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCollectionIntent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 				040174072C3B2B67003175E0 /* SessionIntentError.swift */,
 				040174052C3B2B5C003175E0 /* OpenFavorites.swift */,
 				040174032C3B2B48003175E0 /* GetSessionDetails.swift */,
+				49039CD72E65B100005E4A23 /* OpenRandomSession.swift */,
+				49039CD92E66FD57005E4A23 /* CreateCollectionIntent.swift */,
 				040173F82C3B2AC5003175E0 /* Entities */,
 			);
 			path = AppIntents;
@@ -279,6 +285,7 @@
 				0474DB6C2C3CC7D40097D5A7 /* OpenSessionIntent.swift in Sources */,
 				040174002C3B2B0C003175E0 /* FeaturedCollectionEntityQuery.swift in Sources */,
 				18D775C522AD944300AE281E /* ContentView.swift in Sources */,
+				49039CDA2E66FD57005E4A23 /* CreateCollectionIntent.swift in Sources */,
 				040173FC2C3B2AE2003175E0 /* SessionEntityQuery.swift in Sources */,
 				040173FA2C3B2AD5003175E0 /* SessionEntity.swift in Sources */,
 				040173F32C3B2A82003175E0 /* Session.swift in Sources */,
@@ -294,6 +301,7 @@
 				040174122C3B2C2B003175E0 /* SessionDetailColumn.swift in Sources */,
 				0474DB672C3CB6320097D5A7 /* NavigationModel.swift in Sources */,
 				040174142C3B2C37003175E0 /* SidebarColumn.swift in Sources */,
+				49039CD82E65B100005E4A23 /* OpenRandomSession.swift in Sources */,
 				040173F72C3B2AB4003175E0 /* SessionDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,7 +446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "SessionTracker/Preview\\ Content";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5QJLL8HM6C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SessionTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -459,7 +467,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "SessionTracker/Preview\\ Content";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5QJLL8HM6C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SessionTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;

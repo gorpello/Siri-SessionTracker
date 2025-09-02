@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/hococoder/Downloads/Sightseeing/SessionTracker.xcodeproj">
+      location = "self:">
+   </FileRef>
+   <FileRef
+      location = "group:.swift">
    </FileRef>
 </Workspace>

@@ -38,39 +38,41 @@ struct SessionList: View {
   private var sessionManager
   @Environment(NavigationModel.self)
   private var navigationModel
-
+  
   /// A binding to a user preference indicating whether they hid the Siri tip.
   @AppStorage("displaySiriTip")
   private var displaySiriTip: Bool = true
-
+  
   @MainActor private var filteredSessions: [Session] {
     let searchText = navigationModel.searchText
     guard !searchText.isEmpty else {
       return sessionManager.sessions
     }
-
+    
     return sessionManager.sessions.filter {
       $0.name.lowercased().contains(searchText.lowercased())
     }
   }
-
+  
   /// - Tag: siri_tip
   var body: some View {
     ZStack {
       if let sessionCollection = navigationModel.selectedCollection {
         @Bindable var navigationModel = navigationModel
         List(selection: $navigationModel.selectedSession) {
-          #if os(iOS) || os(visionOS) //Lesson 3 down to line 73
+#if os(iOS) || os(visionOS) //Lesson 3 down to line 73
           if sessionCollection.collectionType == .favorites {
             /**
-            `SiriTipView` pairs with an intent the system uses as an App Shortcut. It provides a small view with the phrase from the
-            App Shortcut so that people learn they can view their favorite trails quickly by speaking the phrase to Siri with no
-            additional setup. The `isVisible` parameter is optional but recommended, to enable people to hide the view if they wish.
-            */
+             `SiriTipView` pairs with an intent the system uses as an App Shortcut. It provides a small view with the phrase from the
+             App Shortcut so that people learn they can view their favorite trails quickly by speaking the phrase to Siri with no
+             additional setup. The `isVisible` parameter is optional but recommended, to enable people to hide the view if they wish.
+             */
             SiriTipView(intent: OpenFavorites(), isVisible: $displaySiriTip)
+            SiriTipView(intent: OpenRandomSession(), isVisible: $displaySiriTip)
+            SiriTipView(intent: CreateCollectionIntent(), isVisible: $displaySiriTip)
           }
-          #endif
-
+#endif
+          
           ForEach(sessionManager.sessions(with: sessionCollection.members)) { session in
             NavigationLink(session.name, value: session)
           }

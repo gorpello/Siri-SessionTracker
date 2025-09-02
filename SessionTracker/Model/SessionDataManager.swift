@@ -36,27 +36,27 @@ import Observation
 @Observable
 class SessionDataManager: @unchecked Sendable {
   static let shared = SessionDataManager()
-
+  
   /// An array of all the trails in the app.
-  let sessions: [Session]
-
+  var sessions: [Session]
+  
   /// An array of trail collections containing the featured trail groups, representing a section in `SidebarColumn`.
   let featuredSessionCollections: [SessionCollection]
-
+  
   /// The trail collections in the For You group of `SidebarColumn`, including favorite trails and those close to the individual.
-  let forYouCollections: [SessionCollection]
-
+  var forYouCollections: [SessionCollection]
+  
   /// A trail collection containing the individual's favorite trails.
   let favoritesCollection: SessionCollection
-
+  
   /// A trail collection containing all of the trails in the `trails` property.
   let completeSessionCollection: SessionCollection
-
+  
   private init() {
     guard let dataURL = Bundle.main.url(forResource: "SessionData", withExtension: "plist") else {
       fatalError("Could not locate data file.")
     }
-
+    
     var dataContainer: DataContainer!
     do {
       let data = try Data(contentsOf: dataURL)
@@ -65,27 +65,41 @@ class SessionDataManager: @unchecked Sendable {
     } catch let error {
       fatalError("Could not decode data. Error: \(error)")
     }
-
+    
     let configuredSessions = dataContainer.sessions.map { sessionDetails in
       return Session(data: sessionDetails)
     }
-
+    
     let completeSessionList = SessionCollection(
       id: 2,
       collectionType: .browseSessions,
       displayName: "Browse",
       symbolName: "figure.hiking",
       members: configuredSessions.map { $0.id })
-
-
+    
+    
     let favorites = dataContainer.collections.first(where: { $0.collectionType == .favorites })!
     forYouCollections = [favorites, completeSessionList]
-
+    
     favoritesCollection = favorites
     completeSessionCollection = completeSessionList
-
+    
     sessions = configuredSessions
     featuredSessionCollections = dataContainer.collections.filter { $0.collectionType == .featured }
+  }
+  
+  func addCollection(name: String) -> SessionCollection {
+    
+    let newCollection = SessionCollection(id: Int.random(in: 100...999),
+                                       collectionType: .browseSessions,
+                                       displayName: name,
+                                       symbolName: "plus",
+                                       members: [])
+    
+    forYouCollections.append(newCollection)
+    
+    // Consider adding to collections, etc.
+    return newCollection
   }
 }
 
@@ -95,14 +109,14 @@ extension SessionDataManager {
   func session(with identifier: Session.ID) -> Session? {
     return sessions.first { $0.id == identifier }
   }
-
+  
   /// - Returns: An array of `Session` structures with the requested `identifiers`.
   func sessions(with identifiers: [Session.ID]) -> [Session] {
     return sessions.compactMap { session in
       return identifiers.contains(session.id) ? session : nil
     }
   }
-
+  
   /// - Returns: An array of `Session` structures that the `predicate` closure returns.
   func sessions(matching predicate: (Session) -> Bool) -> [Session] {
     return sessions.filter(predicate)
