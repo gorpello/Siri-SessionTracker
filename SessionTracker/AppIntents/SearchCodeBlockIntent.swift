@@ -35,12 +35,12 @@ import AppIntents
 @AssistantIntent(schema: .system.search)
 struct SearchCodeBlockIntent: ShowInAppSearchResultsIntent {
   static let searchScopes: [StringSearchScope] = [.general]
-
+  
   @Parameter(title: "Search string")
   var criteria: StringSearchCriteria
-
+  
   @Dependency var navigation: NavigationModel
-
+  
   @MainActor
   func perform() async throws -> some IntentResult {
     //      navigation.openSearch(with: criteria.term)
